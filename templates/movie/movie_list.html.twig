@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des films les cocos
+{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Liste des films</h1>
+<div class="row">
+
+    {% for movie in movies %}
+    <div class="col-4"> 
+            <div class="card border-info mb-3" style="max-width: 20rem;">
+                <div class="card-header">
+                    <h3 class="text-center">{{ movie.title }}</h3>
+
+                </div>
+
+                <img src="{{ movie.poster }}" alt="">
+                <div class="card-body">
+                <h4 class="card-title">Réalisé par :
+                {% for movie in movie.director %}
+{{ dump(movie.director) }}
+
+                    {{ movie.directed }} 
+                {% endfor %}
+                </h4>
+
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}
+
