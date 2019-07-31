@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RatingRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Rating
 {
@@ -23,6 +25,7 @@ class Rating
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Ce champ doit reinseigner une note")
      */
     private $notation;
 
@@ -41,7 +44,18 @@ class Rating
      */
     private $author;
 
-    
+
+    /**
+     * @ORM\PrePersist
+     *
+     */
+    public function testCreatedAt()
+    {
+        if (empty($this->createdAt)) {
+            $this->createdAt = new \DateTime();
+        }
+
+    }
 
     
 

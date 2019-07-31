@@ -63,6 +63,7 @@ class Movie
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="movie")
+     * @ORM\OrderBy({"createdAt" = "desc"})
      */
     private $ratings;
 
@@ -73,7 +74,25 @@ class Movie
         $this->ratings = new ArrayCollection();
     }
 
-
+/**
+ * [getAverageNote calcul la moyenne des notes pour un movie]
+ *
+ * @return  [int]  [moyenne des notes]
+ */
+    public function getAverageNote()
+    {
+        $totalNote =0;
+    
+        // Renvoie en tableua d'objet Rating 
+        $ratings = $this->getRatings();
+        
+        foreach($ratings as $rating)
+        {    
+            $totalNote += $rating->getNotation();
+        }
+    
+        return $totalNote/count($this->getRatings());            
+    }
 
 
     /**

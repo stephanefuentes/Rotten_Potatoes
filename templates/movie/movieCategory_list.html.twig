@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des films les cocos
+{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-4">Liste des films pour la catégorie<strong style="color:green;"> {{ category.title }}</strong></h1>
+    <div class="row">
+
+        {% for movie in category.movies %}
+            <div class="col-4">
+                <div class="card border-info mb-3" style="max-width: 20rem;">
+                    <div class="card-header text-center">
+                        <h3>{{ movie.title }}</h3>
+                        <small>
+                            {{ movie.releasedAt | date('Y') }}</small>
+
+                    </div>
+
+                    <img src="{{ movie.poster }}" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Réalisé par :
+                            <p style="color:green;">
+
+                                {{ movie.director.firstName }}
+                                {{ movie.director.lastName }}
+                            </p>
+
+                        </h4>
+
+                        <p class="card-text text-justify">
+                            {{ movie.synopsis}}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
+

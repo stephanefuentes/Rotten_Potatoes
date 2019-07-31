@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des films les cocos
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center mb-4"></h1>
+{# <div class="row"> #}
+
+    
+       
+            <div class="card border-info mb-3 " style="max-width: 25rem;margin: 0 auto;">
+                <div class="card-header text-center">
+                    <h3>{{ movie.title }}</h3>
+                    <small style="color:green;font-size: 15px;">
+
+                        {{ movie.releasedAt | date('Y') }}</small>
+
+                </div>
+
+                <img src="{{ movie.poster }}" alt="">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Réalisé par :
+                        <p style="color:green;">
+
+                            {{ movie.director.firstName }}
+                            {{ movie.director.lastName }}
+                        </p>
+
+                    </h4>
+
+                    <p class="card-text text-center">Avec :
+                        <ul style="position:relative; left:20%;">
+                            {% for actor in movie.actors %}
+                            <li>{{ actor.firstName }}
+                                {{ actor.lastName }}</li>
+
+                                
+                            {% endfor %}
+                        </ul>
+                    </p>
+                    <p class="text-center">
+                        <strong style="text-decoration:underline;">Note moyenne du film
+                        </strong> :
+                        {{ movie.averageNote | round(2) }}/ 5
+                    </p><hr/><hr/>
+
+
+
+                    <h4 class="text-center m-3">Commentaires ( {{ movie.ratings | length }}  )</h4>
+
+                    {% for rating in movie.ratings %}
+                    <div class="alert-title" style="margin-top:30px;">
+
+                        <p><strong style="color:green;">{{ rating.author.name }}</strong> à écrit :</p>
+                        {{ rating.comment }}
+                        
+                    <p style="margin-top:10px;">Il a donné une note de :
+                        {{ rating.notation }}
+                    </p>
+
+                    </div>
+                    <hr/>
+                    {% endfor %}
+
+
+                    <div class="alert alert-light text-center">
+
+                        {{ form_start(formRating)}}
+                        {{ form_widget(formRating)}}
+                        <button class="btn btn-success">Enregistrer</button>
+                        {{ form_end(formRating)}}
+                        
+                    </div>
+
+
+                </div>
+            </div>
+       
+
+   
+{# </div> #}
+{% endblock %}
