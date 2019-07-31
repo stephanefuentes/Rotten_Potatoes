@@ -60,14 +60,14 @@ class AppFixtures extends Fixture
 
         // people
         $peoples = [];
-
-        for ($p = 0; $p < mt_rand(12, 18); $p++) {
+        $pCount =  mt_rand(20, 50);
+        for ($p = 0; $p < $pCount; $p++) {
             $people = new People();
             $people->setFirstName($faker->firstName())
                 ->setLastName($faker->lastName)
                 ->setDescription($faker->realText(60 * mt_rand(8, 20)))
                 ->setSlug($faker->slug)
-                ->setBirthday($faker->dateTimeBetween("-8 months"))
+                ->setBirthday($faker->dateTimeBetween("-70 years", "-15 years"))
                 ->setPicture("http://placehold.it/400x200");
 
             // $randomMovies = $faker->randomElements($movies, mt_rand(1, 4));
@@ -102,13 +102,15 @@ class AppFixtures extends Fixture
 
        
         // MOVIE
-        for($m = 0; $m < mt_rand(10, 40); $m++ )
+        $mCount =  mt_rand(30, 80);
+        for($m = 0; $m < $mCount; $m++ )
         {
             $movie = new Movie();
             $movie->setTitle($faker->catchPhrase)
                 ->setSlug($faker->slug)
-                ->setPoster($faker->imageUrl(300, 200, null, true))
-                ->setReleasedAt($faker->dateTimeBetween("-6 months"))
+                //->setPoster($faker->imageUrl(300, 200, null, true))
+                ->setPoster($faker->imageUrl(300, 200, null))
+                ->setReleasedAt($faker->dateTimeBetween("-40 years"))
                 ->setSynopsis($faker->realText(60 * mt_rand(4, 12)));
 
             // Je prend un people au hasard qui sera le réalisateur

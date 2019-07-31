@@ -4,14 +4,15 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Liste des films</h1>
+    <h1 class="text-center mb-4" >Liste des films</h1>
 <div class="row">
 
     {% for movie in movies %}
     <div class="col-4"> 
             <div class="card border-info mb-3" style="max-width: 20rem;">
-                <div class="card-header">
-                    <h3 class="text-center">{{ movie.title }}</h3>
+                <div class="card-header text-center">
+                    <h3>{{ movie.title }}</h3>
+                    <small> {{ movie.releasedAt | date('Y') }}</small>
 
                 </div>
 
