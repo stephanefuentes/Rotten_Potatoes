@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}list movie
+{% endblock %}
+
+{% block body %}
+
+    {% for movie in movies %}
+        <div>
+            <p style="background:#584848;padding:15px;">
+                {{ movie.title }}
+                <ul>
+                {% for rating in movie.ratings %}
+                    <li>
+                        <p>{{ rating.comment }}
+                            <a class="badge badge-danger" href="{{ path('admin_rating_delete', {'id': rating.id}) }}">Supprimer</a>
+
+                        </p>
+                    </li>
+
+                {% endfor %}
+                </ul>
+            </p>
+        </div>
+    {% endfor %}
+    <table class="table table-hover"></table>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}list movie{% endblock %}
+
+{% block body %}
+
+    {% for movie in movies %}
+        <p style="background:#584848;padding:15px;">
+            {{ movie.title }}
+            <section style="display: inline;">
+                <a href="{{ path('admin_movie_delete', {'id': movie.id}) }}" class="btn btn-danger">Supprimer</a>    <a class="btn btn-info" href="{{ path('admin_movie_edit', {'id': movie.id}) }}">Editer</a>
+
+            </section>
+
+        </p>
+
+    {% endfor %}
+    <table class="table table-hover">
+        
+    
+    </table>
+    
+{% endblock %}

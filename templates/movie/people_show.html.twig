@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des films les cocos
+{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-4"></h1>
+    {# <div class="row"> #}
+
+
+    <div class="card border-info mb-3 " style="max-width: 25rem;margin: 0 auto;">
+        <div class="card-header text-center">
+            <h3 style="color:green;">{{ people.firstName }}
+                {{ people.lastName }}
+            </h3>
+
+           {# <small style="color:green;font-size: 15px;">
+
+                {{ movie.releasedAt | date('Y') }}</small> #}
+
+        </div>
+
+        <img src="{{ people.picture }}" alt="">
+        <div class="card-body text-justify">
+           {{ people.description}}<hr style="margin:20px 0;"/>
+            
+            A jouer dans :
+            <p class="card-text">
+            <ul>
+
+                    {% for movie in people.actedIn %}
+                        
+                        <li>
+                            <a href=" {{ path('movie', {'slug': movie.slug} ) }}">{{movie.title}}</a>
+
+                            <p>
+                                ( Réaliser par
+                                {{ movie.director.firstName}}
+                                {{ movie.director.lastName}} en 
+                                {{ movie.releasedAt | date('Y') }} )
+
+                            </p>
+                        
+                        </li>
+
+                    
+                    {% endfor %}
+            </ul>
+            </p>
+            <hr style="margin:20px 0;"/>
+
+            <p>A réaliser :
+                <ul>
+                    {% for movie in people.directed %}
+                        <li>
+                            <p>
+                                <a href="{{ path('movie', {'slug': movie.slug}) }}">{{ movie.title }}</a>
+                                <br/>
+                                (
+                                {{ movie.releasedAt | date('Y')}}
+                                )
+
+                            </p>
+                            
+                                
+                            
+                        </li>
+
+                    {% endfor %}
+                </ul>
+
+            </p>
+
+
+           
+
+        </div>
+    </div>
+
+
+    {# </div> #}
+{% endblock %}
+

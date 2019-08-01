@@ -8,7 +8,7 @@
 
     </head>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
 <a class="navbar-brand" href="{{ path('movie_list') }}">Rotten Potatoes</a>
 
     <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor01" data-toggle="collapse" type="button">
@@ -55,7 +55,7 @@
             {% else %}
 
                 <li class="nav-item" style="position:absolute; top:75px; left:15px;">
-                    connecter en tant que
+                    connecté en tant que
                     {{ app.user.name }}
                 </li>
                 <li class="nav-item">
@@ -80,7 +80,7 @@
 
 
     <body>
-<div class="container pt-5"> {% block body %}{% endblock %}
+<div class="container mt-5 pt-5"> {% block body %}{% endblock %}
     </div>
 
         {% block javascripts %}{% endblock %}

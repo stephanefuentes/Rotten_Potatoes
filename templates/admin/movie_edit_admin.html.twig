@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit movie
+{% endblock %}
+
+{% block body %}
+
+
+
+    {# <div class="alert alert-light"> #}
+
+        {{ form_start(formMovie)}}
+        {{ form_widget(formMovie)}}
+        <button class="btn btn-success">Enregistrer</button>
+        {{ form_end(formMovie)}}
+
+    {# </div> #}
+
+
+{% endblock %}

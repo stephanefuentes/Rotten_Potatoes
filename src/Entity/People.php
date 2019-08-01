@@ -52,11 +52,14 @@ class People
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Movie", inversedBy="actors")
+     * @ORM\OrderBy({"releasedAt" = "desc"})
+     * 
      */
     private $actedIn;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Movie", mappedBy="director")
+     * @ORM\OrderBy({"releasedAt" = "desc"})
      */
     private $directed;
 
@@ -66,6 +69,12 @@ class People
         $this->directed = new ArrayCollection();
     }
 
+    
+
+    public function getFullName()
+    {
+        return $this->firstName.' '.$this->lastName;
+    }
 
 
     /**

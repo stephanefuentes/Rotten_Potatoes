@@ -63,7 +63,20 @@
                     <hr/>
                     {% endfor %}
 
+                {% if not is_granted('ROLE_USER') %}
+                
+                    <p class="text-center">Pour laisser un commentaire :</p>
 
+                         <p class="text-center">
+
+                            <a href="{{ path('security_register') }}" class="btn btn-info">Inscription</a>
+                            <a href="{{ path('security_login') }}" class="btn btn-success">Connexion</a>
+                        </p>
+
+                    
+
+                {% else %}
+                    
                     <div class="alert alert-light text-center">
 
                         {{ form_start(formRating)}}
@@ -72,6 +85,8 @@
                         {{ form_end(formRating)}}
                         
                     </div>
+                {% endif %}
+                
 
 
                 </div>

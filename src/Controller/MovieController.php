@@ -13,18 +13,23 @@ use App\Form\RatingType;
 use App\Entity\Rating;
 use Symfony\Component\Security\Core\Security;
 use Doctrine\Common\Persistence\ObjectManager;
+use App\Entity\People;
+
+
 
 class MovieController extends AbstractController
 {
     /**
      * @Route("/", name="movie_list")
      */
-    public function movie_list(MovieRepository $repo)
+    public function accueil_movie(MovieRepository $repo)
     {
-        //$movies = $repo->findAll();
-       $movies = $repo->findBy([], ["releasedAt" => "DESC"]);
 
-        dump($movies);
+            $movies = $repo->recent_movie(3);
+    //     //$movies = $repo->findAll();
+    //    $movies = $repo->findBy([], ["releasedAt" => "DESC"]);
+
+        
 
         return $this->render('movie/movie_list.html.twig', [
             'controller_name' => 'MovieController',
@@ -45,6 +50,7 @@ class MovieController extends AbstractController
             'category' => $category
         ]);
     }
+
 
     /**
      * @Route("/movie/{slug}", name="movie")
@@ -81,7 +87,22 @@ class MovieController extends AbstractController
     }
 
 
-    
+
+
+    /**
+     * @Route("/people/{slug}", name="people_show")
+     */
+    public function people_show(People $people)
+    {
+        
+
+        return $this->render('movie/people_show.html.twig', [
+            'controller_name' => 'MovieController',
+            'people' => $people
+        ]);
+    }
+
+
 
 
 // 1 . je veux une fonctin pour afficher un twig qui contiendra les category

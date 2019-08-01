@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-center mb-4" >Liste des films</h1>
+    <h1 class="text-center mb-4" >Les 3 films les plus récent</h1>
 <div class="row">
 
     {% for movie in movies %}
@@ -22,16 +22,27 @@
                 <div class="card-body">
                     <h4 class="card-title text-center">Réalisé par :
                         <p style="color:green;">
+                            <a href=" {{ path('people_show', {'slug': movie.director.slug}) }}">
+                                {{ movie.director.firstName }}
+                                {{ movie.director.lastName }}
+                            </a>
 
-                            {{ movie.director.firstName }}
-                            {{ movie.director.lastName }}
                         </p>
 
                     </h4>
 
+                    {# {% for actor in movie.actors %}
+                        {% if condition %}
+                        
+                        {% endif %}
+                        
+                        
+                    {% endfor %} #}
+
                     <p class="card-text">
                         {{ movie.synopsis}}
-                    </p>
+                    </p> 
+                    <p>Note moyenne : {{ movie.averageNote | round(2)}} / 5</p>
                     <p class="text-center">
                         <a class="btn btn-success"href="{{ path('movie', {'slug': movie.slug} ) }}">Aller voir ..</a>
                     </p>
